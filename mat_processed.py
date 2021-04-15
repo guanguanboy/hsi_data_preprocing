@@ -19,7 +19,7 @@ print(img_path_name_list)
 mat_file_list = []
 NORMLIZED_WIDTH = 390
 NORMLIZED_HEIGHT = 512
-NORMLIZED_BAND_NUM = 50
+NORMLIZED_BAND_NUM = 64
 
 for path in img_path_name_list:
     mat_file_sub_list = os.listdir(mat_source_root_dir + path)
@@ -32,14 +32,14 @@ for path in img_path_name_list:
         mat_file_complete_path = mat_source_root_dir + path + '/' + mat_file
         mat_data = scipy.io.loadmat(mat_file_complete_path)
         mat_data_content = mat_data['img']
-        mat_data_band_deleted = mat_data_content[:,:,24:448-24] #去掉前后各24个band
+        mat_data_band_deleted = mat_data_content[:,:,40:448-24] #去掉前40个band，后24个band，剩余384个band
         width = mat_data_band_deleted.shape[0]
         height = mat_data_band_deleted.shape[1]
-        band_num = mat_data_band_deleted.shape[2]
-        band_selected = np.zeros((width,height,band_num//8), dtype=np.int16) #用来保存选择到的50个band
+        band_num = mat_data_band_deleted.shape[2] #384除以6会得到64个band
+        band_selected = np.zeros((width,height,NORMLIZED_BAND_NUM), dtype=np.int16) #用来保存选择到的50个band
         count = 0
         for i in range(band_num):
-            if i % 8 == 0:
+            if i % 6 == 0:
                 band_selected[:,:,count] = mat_data_band_deleted[:,:,i]
                 count = count + 1
         band_selected_resized = band_selected[0:NORMLIZED_WIDTH,0:NORMLIZED_HEIGHT,:] #取左上角的390*512*50的内容，使得所有mat文件大小一致
