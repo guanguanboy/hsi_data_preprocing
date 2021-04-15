@@ -19,13 +19,13 @@ if ~exist(savePath, 'dir')
 end
 
 %% 找到训练集文件夹下所有mat文件
-lowlight_srPath =  '../../mat_selected_1_8/train/1ms';
+lowlight_srPath =  '../../lowlight_origin_mat/train/1ms';
 fileFolder=fullfile(lowlight_srPath);
 dirOutput=dir(fullfile(fileFolder,'*.mat'));
 fileNames={dirOutput.name}';
 length(fileNames)
 
-label_srPath =  '../../mat_selected_1_8/train/15ms';%该目录下的name与'../mat_selected_1_8/1ms'是一致的
+label_srPath =  '../../lowlight_origin_mat/train/15ms';%该目录下的name与'../mat_selected_1_8/1ms'是一致的
 label_fileFolder=fullfile(label_srPath);
 label_dirOutput=dir(fullfile(label_fileFolder,'*.mat'));
 label_fileNames={label_dirOutput.name}';

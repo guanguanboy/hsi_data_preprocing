@@ -22,7 +22,7 @@ data_using_type = [TRAIN, TEST]
 total_sample_num = 0
 
 #计算total sample num
-total_sample_num = 12
+total_sample_num = len(os.listdir(mat_source_root_dir + img_path_name_list_corret[0]))
 
 indices = np.arange(total_sample_num)
 rng = np.random.RandomState(123)
@@ -64,6 +64,8 @@ for path in img_path_name_list_corret:
 
         if data_set_type == TEST:
             test_sample_name = np.array(mat_file_sub_list)[test_ind]
+            # 以上已经找到了要复制的文件的名称，下面这些文件分别复制到对应的文件夹下即可。
+
             for mat_file_name in test_sample_name:
                 mat_file_full_path = mat_source_root_dir + path + '/' + mat_file_name
                 try:
@@ -72,12 +74,6 @@ for path in img_path_name_list_corret:
                     print("Unable to copy file. %s" % e)
                 except:
                     print("Unexpected error:", sys.exc_info())
-
-        #以上已经找到了要复制的文件的名称，下面这些文件分别复制到对应的文件夹下即可。
-
-        #先复制train sample
-
-        #再复制test sample
 
 #sub_list_len = len(mat_file_sub_list)
 #print('sub_list_len', sub_list_len)
