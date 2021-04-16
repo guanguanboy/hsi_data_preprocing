@@ -39,15 +39,17 @@ for i = 1:length(fileNames) %最外层循环，遍历每一个mat文件
     lowlight_data_path = [lowlight_srPath, '/', name];
     load(lowlight_data_path) %load执行之后，img这个变量会被创建。
     
-    %% normalization 
-    lowlight_normalized_hsi = img / (1.0*max(max(max(img))));%max(max(max(ref)))是为了找出ref中的最大值，然后整体除以最大值做归一化
+    %% normalization
+    img_double = double(img);
+    lowlight_normalized_hsi = img_double ./ 2047;%max(max(max(ref)))是为了找出ref中的最大值，然后整体除以最大值做归一化
     clear img;%%其中img为mat中数据的key值
  
     %%加载label数据
     label_name = char(label_fileNames(i));
     label_data_path = [label_srPath, '/', label_name];%label的name与lowlight的name是一样的。
     load(label_data_path)
-    label_normalized_hsi = img / (1.0*max(max(max(img))));%max(max(max(ref)))是为了找出ref中的最大值，然后整体除以最大值做归一化
+    label_double = double(img);
+    label_normalized_hsi = label_double ./ 2047;%max(max(max(ref)))是为了找出ref中的最大值，然后整体除以最大值做归一化
     clear img;%%其中img为mat中数据的key值
 
     for j = 1:randomNumber %内层循环，遍历每一个path
