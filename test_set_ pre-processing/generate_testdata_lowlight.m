@@ -62,10 +62,10 @@ for index = 1 : lowlight_num
     
     height_offset = (label_height - test_hsi_height)/2;
     width_offset = (label_width - test_hsi_width)/2;
-    label = lowlight_normalized_hsi(height_offset:height_offset+test_hsi_height-1, width_offset:width_offset+test_hsi_width-1,:);
+    label = label_normalized_hsi(height_offset:height_offset+test_hsi_height-1, width_offset:width_offset+test_hsi_width-1,:);
 
 
-    save([savePath,'/',name,'.mat'], 'lowlight', 'label')
+    save([savePath,'/',name], 'lowlight', 'label')
 
     clear lowlight_croped
     clear label_croped
