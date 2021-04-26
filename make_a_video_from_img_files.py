@@ -30,10 +30,10 @@ for i in range(len(img_path_name_list)):
 for i in range(len(img_path_name_list)):
 
     #img = io.imread(file_dir + img_path_name_list[i])
-    img = cv2.imread(file_dir + img_path_name_list[i], cv2.IMREAD_UNCHANGED)
+    img = cv2.imread(file_dir + img_path_name_list[i], cv2.IMREAD_UNCHANGED) #通过cv2.IMREAD_UNCHANGED读入原图
     img = img.astype(np.float32)
     img = (img/2047)*255
-    img = img.astype(np.uint8)
+    img = img.astype(np.uint8) #要将灰度图转换为rgb，需要灰度图为8位
 
     img = cv2.resize(img, (640, 480))
     print(img.shape)
