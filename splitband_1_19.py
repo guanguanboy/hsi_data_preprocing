@@ -6,7 +6,7 @@ import scipy.io
 from PIL import Image
 import os
 
-dataset_root_path = '../light_1_20/'
+dataset_root_path = '../../424capture/'
 img_path_name_list = os.listdir(dataset_root_path)  # 得到path目录下所有图片名称的一个list
 
 pathlistlen = len(img_path_name_list)
@@ -17,7 +17,7 @@ print(img_path_name_list[0])
 
 img_name_list_hdr = []
 for i in range(pathlistlen ):
-    img_name_list_hdr.append(dataset_root_path + img_path_name_list[i] + '/capture/' + img_path_name_list[i][0:20] + '.hdr')
+    img_name_list_hdr.append(dataset_root_path + img_path_name_list[i] + '/capture/' + img_path_name_list[i] + '.hdr')
     print(img_name_list_hdr[i])
 
 
